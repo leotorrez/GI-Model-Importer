@@ -4,12 +4,6 @@ V0.2.0
 By lewis252310
 
 -->
-
-<!-- <style>
-    body { background-color: #404040 !important }
-    h1,h2,h3,h4,h5,h6,p { color: #FFF !important }
-</style> -->
-
 #### Preface
 This is a GIMI-based ini file documentation.
 This is the first version, so only the most basic syntax is covered.
@@ -55,18 +49,29 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 > Here is the syntax tree, modifiers are in the next section
 
 [[\*Override\*]](#override)
+
 ├ [hash](#hash)
+
 ├ [handling](#handling)
+
 ├ [drawindexed](#drawindexed)
+
 ├ [match_first_index](#match_first_index)
+
 ├ [vb0, vb1, vb2, ...](#vbx)
+
 ├ [ib](#ib)
+
 ├ [ps-t0, ps-t1, ps-t2, ps-t3, ...](#ps-tx)
+
 ├ [filter_index](#filter_index)
+
 ├ [allow_duplicate_hash](#allow_duplicate_hash)
+
 └ [match_priority](#match_priority)
 
 [[Resource*]](#resource)
+
 ├ [type](#type-resourse)
 ├ [filename](#filename)
 ├ [format](#format)
@@ -80,8 +85,11 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 [[Present]](#present)
 
 [[Key*]](#key-section)
+
 ├ [key](#key-properties)
+
 ├ [type](#type-key)
+
 └ [warp](#warp)
 
 > If you can't find what you need here, it might be a reserved word or a modifier.
@@ -92,11 +100,16 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 > Modifiers here, the syntax tree is in the previous section.
 
 [post](#post)
+
 [pre](#pre)
+
 [global](#global)
+
 [local](#local)
+
 [persist](#persist)
-[ref](#ref) <- not really know
+
+[ref | reference](#ref)
 
 ---
 
@@ -104,6 +117,7 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 > Reserved words.
 
 [if, endif, else if, else](#if-condition)
+
 [run](#run)
 
 ---
@@ -112,8 +126,11 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 > Here are some general rules.
 
 [Variable](#variable)
+
 [Condition](#ondition)
+
 [ERROR msg](#error-msg)
+
 [Operators](#operators)
 
 ---
@@ -127,18 +144,6 @@ There are two types of overrides: `TextureOverride` and `ShaderOverride`. When t
 [TextureOverrideLumainBody]
 [ShaderOverridGroundHealthBar]
 ```
-
-<!-- 底下是一個代碼範例，能夠被點選的就是有自己意思的字，無法點選的則是普通的值。
-
-> ---
-> 
-> [<span style="color:green">Texture[Override](#override "AA")LumainBody</span>]
-> [hash](#hash) = afd36b46
-> [handling](#handling) = skip
->
-> 
-> --- -->
-
 #### hash
 
 It tells GIMI which object to pay attention to and triggers the corresponding action when found.
@@ -251,7 +256,7 @@ Not sure if it is one of the reserved words in GIMI, but since sections with res
 
 #### type (Resourse)
 
-This is a properties under [Resourse](#resource), not under [Key](#key-section).
+This is a properties under [Resource](#resource), not under [Key](#key-section).
 It declares the type of the resource, which is generally used for buffer types.
 ```ini
 [ResourceLumainPantsuPosition]
@@ -260,17 +265,17 @@ type = Buffer
 
 #### filename
 
-Only appears under [Resourse](#resource). It uses a relative path to point to the storage location of the resource. It is unclear whether absolute paths are supported, but using absolute paths in this context of redistributable data wouldn't make much sense.
+Only appears under [Resource](#resource). It uses a relative path to point to the storage location of the resource. It is unclear whether absolute paths are supported, but using absolute paths in this context of redistributable data wouldn't make much sense.
 ```ini
-[ResourceLumainPantsu]
-filename = .\pantsu0\LumainPantsu.dds
+[ResourceLumineBodyDiffuse]
+filename = .\LumineParts\LumineBodyDiffuse.dds
 ```
 
 #### format
 
 Used for IB (Index Buffer) resources, specifies the size of a single index value.
 ```ini
-[ResourceLumainBodyIB]
+[ResourceLumineBodyIB]
 format = DXGI_FORMAT_R32_UINT
 ```
 
@@ -490,5 +495,5 @@ This is just a list of operators allowed in GIMI and does not include any usage 
 | Operators | Name           | Note                      |
 | --------- | -------------- | ------------------------- |
 | &&        | AND            |                           |
-| ||        | OR             |                           |
-| ()        | Parenthesis    |                           |
+| \|\|      | OR             |                           |
+| ( )       | Parenthesis    |                           |
