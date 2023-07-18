@@ -73,9 +73,13 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 [[Resource*]](#resource)
 
 ├ [type](#type-resourse)
+
 ├ [filename](#filename)
+
 ├ [format](#format)
+
 ├ [stride](#stride)
+
 └ [data](#data)
 
 [[CommandList*]](#commandlist)
@@ -111,12 +115,16 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 
 [ref | reference](#ref)
 
+[copy](#copy)
+
 ---
 
 ### Reserved words
 > Reserved words.
 
-[if, endif, else if, else](#if-condition)
+[time](#time)
+
+[if, endif, else if, else](#condition)
 
 [run](#run)
 
@@ -127,7 +135,7 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 
 [Variable](#variable)
 
-[Condition](#ondition)
+[Condition](#condition)
 
 [ERROR msg](#error-msg)
 
@@ -426,9 +434,16 @@ global persist $a_persist_var = 1
 
 #### ref
 
-No further detailed information is available at the moment. It is likely to function similar to a pointer or reference.
+ref or reference are used as pointers to a resource. It's up to the programmer to take advantage of this powerful tool
 ```ini
 pre ResourceHelp = ref ResourceHelpFull
+pre ResourceHelp = reference ResourceHelpFull
+```
+#### copy
+
+It copies the resource into the new one. Very helpful to keep a copy of a resource before it gets modified by another shader or draw call.
+```ini
+pre ResourceHelp = copy ResourceHelpFull
 ```
 
 #### run
@@ -450,7 +465,7 @@ And if there is no `$` symbol in some positions that should be variables, that i
 $last_date = time
 ; $last_date is our defined variable, while time is a reserved word in GIMI.
 ```
-
+Note: the variable `time` saves a float with the time in seconds since the game launched.
 #### Condition
 
 GIMI has condition control reserved words, including `if`, `else if`, `else`, and `endif`.
@@ -469,7 +484,7 @@ endif
 
 #### ERROR msg
 
-No further detailed information is available at the moment.
+Certain compilation errors, specially in shaders, will be shown in screen. When it comes to ini files it will just show warnings that hint possible mod conflicts. Good to troubleshoot broken mods.
 
 #### Arimethical Operators
 
