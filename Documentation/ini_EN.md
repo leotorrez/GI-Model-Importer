@@ -149,14 +149,14 @@ There are two types of overrides: `TextureOverride` and `ShaderOverride`. When t
 
 ```ini
 [*Override*]
-[TextureOverrideLumainBody]
+[TextureOverrideLumineBody]
 [ShaderOverridGroundHealthBar]
 ```
 #### hash
 
 It tells GIMI which object to pay attention to and triggers the corresponding action when found.
 ```ini
-[TextureOverrideLumainBody]
+[TextureOverrideLumineBody]
 hash = afd36b46
 ```
 
@@ -164,7 +164,7 @@ hash = afd36b46
 
 It specifies the rendering operation for the designated object, usually using `skip` to bypass rendering.
 ```ini
-[TextureOverrideLumainPantsu]
+[TextureOverrideLuminePantsu]
 handling = skip
 ```
 
@@ -172,7 +172,7 @@ handling = skip
 
 Tell GIMI to perform our own rendering instead of using the game's rendering. It is usually used in conjunction with [handling](#handling).
 ```ini
-[TextureOverrideLumainBody]
+[TextureOverrideLumineBody]
 drawindexed = auto
 ```
 
@@ -180,7 +180,7 @@ drawindexed = auto
 
 Assigns x vertex in memory space to be drawn at y index. DirectX Documentation: https://learn.microsoft.com/en-us/windows/win32/api/d3d11/nf-d3d11-id3d11devicecontext-draw
 ```ini
-[TextureOverrideLumainBlend]
+[TextureOverrideLumineBlend]
 draw = x, y
 ```
 
@@ -188,32 +188,32 @@ draw = x, y
 
 Specifies the starting position of the buffer. Sometimes, a hash may contain more than one material, so it is necessary to specify the correct resource to load.
 ```ini
-[TextureOverrideLumainBody]
+[TextureOverrideLumineBody]
 match_first_index = 25600
 ```
 
 #### vbx
 Vertex buffer. It usually points directly to another [Resource](#resource) section.
 ```ini
-[TextureOverrideLumainBody]
-vb0 = ResourceLumainPosition
+[TextureOverrideLumineBody]
+vb0 = ResourceLuminePosition
 ```
 
 #### ib
 Index buffer. It usually points directly to a [Resource](#resource) section that contains the IB. There can only be one index buffer per object.
 ```ini
-[TextureOverrideLumainBody]
-ib = ResourceLumainBodyIB
+[TextureOverrideLumineBody]
+ib = ResourceLumineBodyIB
 ```
 
 #### ps-tx
 Texture resource layer. There are several different types, generally, t0 represents the texture map, t1 represents the light map, t2 represents the metal map, and t3 represents the shadow map. In 3.0 characters this convetion is broken. For more info and fix check: 
 ```ini
-[TextureOverrideLumainPantsu]
-ps-t0 = ResourceLumainPantsuDiffuse
-ps-t1 = ResourceLumainPantsuLightMap
-ps-t2 = ResourceLumainPantsuMetalMap
-ps-t3 = ResourceLumainPantsuShadowRamp
+[TextureOverrideLuminePantsu]
+ps-t0 = ResourceLuminePantsuDiffuse
+ps-t1 = ResourceLuminePantsuLightMap
+ps-t2 = ResourceLuminePantsuMetalMap
+ps-t3 = ResourceLuminePantsuShadowRamp
 ...
 
 ```
@@ -223,7 +223,7 @@ ps-t3 = ResourceLumainPantsuShadowRamp
 Declares a check value that allows checking elsewhere. It is likely to occupy ps-t0, so it is uncertain whether it is a good approach.
 <!-- Actually it's still not very clear (for me), from someone, it seems that it can disable a specified filter. -->
 ```ini
-[TextureOverrideLumainGlasses]
+[TextureOverrideLumineGlasses]
 filter_index = 34
 ```
 
@@ -237,7 +237,7 @@ Possible values are:
  - overrule: Forces the override, which seems to be a plugin-level override.
 
 ```ini
-[ShaderOverrideLumainQEffect]
+[ShaderOverrideLumineQEffect]
 hash = 030dbce199e10697
 allow_duplicate_hash = overrule
 ```
@@ -247,7 +247,7 @@ At TextureOverride.
 Declares the order priority for overrides. The higher the value, the higher the priority.
 It is not commonly used in GIMI, except in cases where it is used to eliminate hash conflicts. In those cases, setting it to 0 is sufficient.
 ```ini
-[TextureOverrideLumainGlasses]
+[TextureOverrideLumineGlasses]
 match_priority = 0
 ```
 
@@ -258,7 +258,7 @@ match_priority = 0
 Not sure if it is one of the reserved words in GIMI, but since sections with resources are usually prefixed with `Resource` let's consider it a reserved word. This makes it easier to identify and avoids confusion with other sections that have specific purposes. These sections are typically used to store various resource locations.
 ```ini
 [Resource*]
-[ResourceLumainPantsu]
+[ResourceLuminePantsu]
 [ResourceMyRGBWeapon]
 ```
 
@@ -267,7 +267,7 @@ Not sure if it is one of the reserved words in GIMI, but since sections with res
 This is a properties under [Resource](#resource), not under [Key](#key-section).
 It declares the type of the resource, which is generally used for buffer types.
 ```ini
-[ResourceLumainPantsuPosition]
+[ResourceLuminePantsuPosition]
 type = Buffer
 ``` 
 
@@ -290,14 +290,14 @@ format = DXGI_FORMAT_R32_UINT
 #### stride
 Used for VB (Vertex Buffer) resources, specifies the byte size of a single vertex's total data.
 ```ini
-[ResourceLumainPantsu]
+[ResourceLuminePantsu]
 stride = 20
 ```
 
 #### data
 Used for ?? resources, it is a string.
 ```ini
-[ResourceLumainPantsu]
+[ResourceLuminePantsu]
 data = "Jsut a string."
 ```
 
@@ -452,7 +452,7 @@ Declares the section to be executed.
 Commonly used to refer to a [CommandList](#commandlist) for further computations.
 ```ini
 [KeyChangeColor]
-run = CommandListLumainChangePanTsuColor
+run = CommandListLumineChangePanTsuColor
 ```
 
 ---
