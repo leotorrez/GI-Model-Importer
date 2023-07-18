@@ -68,7 +68,37 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 
 ├ [allow_duplicate_hash](#allow_duplicate_hash)
 
-└ [match_priority](#match_priority)
+├ [match_priority](#match_priority)
+
+├ [match_type](#match_type)
+
+├ [match_width](#match_width)
+
+├ [match_height](#match_height)
+
+├ [match_msaa](#match_msaa)
+
+├ [match_msaa_quality](#match_msaa_quality)
+
+├ [match_usage](#match_usage)
+
+├ [match_bind_flags](#match_bind_flags)
+
+├ [match_cpu_access_flags](#match_cpu_access_flags)
+
+├ [match_misc_flags](#match_misc_flags)
+
+├ [match_byte_width](#match_byte_width)
+
+├ [match_stride](#match_stride)
+
+├ [match_mips](#match_mips)
+
+├ [match_format](#match_format)
+
+├ [match_depth](#match_depth)
+
+└ [match_array](#match_array)
 
 [[Resource*]](#resource)
 
@@ -249,6 +279,132 @@ It is not commonly used in GIMI, except in cases where it is used to eliminate h
 ```ini
 [TextureOverrideLumineGlasses]
 match_priority = 0
+```
+
+#### match_type
+At TextureOverride.
+Used instead of hash. Called when any component of the selected type is rendered.
+```ini
+[TextureOverrideTexture2D]
+match_type = Texture2D
+```
+
+#### match_width
+At TextureOverride.
+Checks the width of the texture.
+```ini
+[TextureOverrideWidth1024]
+match_width = 1024
+```
+
+#### match_height
+At TextureOverride.
+Checks the height of the texture.
+```ini
+[TextureOverrideHeight1024]
+match_height = 1024
+```
+
+#### match_msaa
+At TextureOverride.
+Filter by MSAA (Not used in anime game).
+```ini
+[TextureOverrideMsaa]
+match_msaa = 1
+```
+
+#### match_msaa_quality
+At TextureOverride.
+```ini
+[TextureOverrideMsaaQuality]
+match_msaa_quality = 1
+```
+
+#### match_usage
+At TextureOverride.
+This setting doesn't make much sense and defaults to DEFAULT.
+More details here:
+https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_usage
+```ini
+[TextureOverrideUsage]
+match_usage = IMMUTABLE
+```
+
+#### match_bind_flags
+At TextureOverride.
+Another filter.
+You can use + or - before the flag to change the filtering.
+If there is no + or - then the filter is simply not used.
+```ini
+[TextureOverrideAllBindFlags]
+match_bind_flags = +VERTEX_BUFFER -INDEX_BUFFER CONSTANT_BUFFER SHADER_RESOURCE STREAM_OUTPUT RENDER_TARGET DEPTH_STENCIL UNORDERED_ACCESS DECODER VIDEO_ENCODER
+```
+
+#### match_cpu_access_flags
+At TextureOverride.
+Another filter.
+You can use + or - before the flag to change the filtering.
+If there is no + or - then the filter is simply not used.
+```ini
+[TextureOverrideAllCPUAccessFlags]
+match_cpu_access_flags = +READ -WRITE
+```
+
+#### match_misc_flags
+At TextureOverride.
+Another filter.
+You can use + or - before the flag to change the filtering.
+If there is no + or - then the filter is simply not used.
+```ini
+[TextureOverrideAllMiscFlags]
+match_misc_flags = GENERATE_MIPS SHARED TEXTURECUBE DRAWINDIRECT_ARGS BUFFER_ALLOW_RAW_VIEWS BUFFER_STRUCTURED RESOURCE_CLAMP SHARED_KEYEDMUTEX GDI_COMPATIBLE SHARED_NTHANDLE RESTRICTED_CONTENT RESTRICT_SHARED_RESOURCE RESTRICT_SHARED_RESOURCE_DRIVER GUARDED TILE_POOL TILED
+```
+
+#### match_byte_width
+At TextureOverride.
+Match byte width.
+```ini
+[TextureOverrideByteWidth]
+match_byte_width = res_width * res_height
+```
+
+#### match_stride
+At TextureOverride.
+Something to do with buffers.
+```ini
+[TextureOverrideStride]
+match_stride = 40
+```
+
+#### match_mips
+At TextureOverride.
+```ini
+[TextureOverrideMips]
+match_mips = 1
+```
+
+#### match_format
+At TextureOverride.
+Filter by format. Useful for modifying something that doesn't have a constant hash.
+List of DX formats:
+https://learn.microsoft.com/en-us/windows/win32/api/dxgiformat/ne-dxgiformat-dxgi_format
+```ini
+[TextureOverrideFormat]
+match_format = R32G32B32A32_FLOAT
+```
+
+#### match_depth
+At TextureOverride.
+```ini
+[TextureOverrideDepth]
+match_depth = 1
+```
+
+#### match_array
+At TextureOverride.
+```ini
+[TextureOverrideArray]
+match_array = 12
 ```
 
 ---
