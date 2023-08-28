@@ -68,7 +68,37 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 
 ├ [allow_duplicate_hash](#allow_duplicate_hash)
 
-└ [match_priority](#match_priority)
+├ [match_priority](#match_priority)
+
+├ [match_type](#match_type)
+
+├ [match_width](#match_width)
+
+├ [match_height](#match_height)
+
+├ [match_msaa](#match_msaa)
+
+├ [match_msaa_quality](#match_msaa_quality)
+
+├ [match_usage](#match_usage)
+
+├ [match_bind_flags](#match_bind_flags)
+
+├ [match_cpu_access_flags](#match_cpu_access_flags)
+
+├ [match_misc_flags](#match_misc_flags)
+
+├ [match_byte_width](#match_byte_width)
+
+├ [match_stride](#match_stride)
+
+├ [match_mips](#match_mips)
+
+├ [match_format](#match_format)
+
+├ [match_depth](#match_depth)
+
+└ [match_array](#match_array)
 
 [[Resource*]](#resource)
 
@@ -95,6 +125,22 @@ Now we can start to talk about the modifiers and reserved words used in GIMI's `
 ├ [type](#type-key)
 
 └ [warp](#warp)
+
+[[CustomShader*]](#customshader)
+
+├ [topology](#topology)
+
+├ [cull](#cull)
+
+├ [fill](#fill)
+
+├ [blend](#blend)
+
+├ [alpha](#alpha)
+
+├ [max_executions_per_frame](#max_executions_per_frame)
+
+└ [alpha_to_coverage](#alpha_to_coverage)
 
 > If you can't find what you need here, it might be a reserved word or a modifier.
 
@@ -251,6 +297,132 @@ It is not commonly used in GIMI, except in cases where it is used to eliminate h
 match_priority = 0
 ```
 
+#### match_type
+At TextureOverride.
+Used instead of hash. Called when any component of the selected type is rendered.
+```ini
+[TextureOverrideTexture2D]
+match_type = Texture2D
+```
+
+#### match_width
+At TextureOverride.
+Checks the width of the texture.
+```ini
+[TextureOverrideWidth1024]
+match_width = 1024
+```
+
+#### match_height
+At TextureOverride.
+Checks the height of the texture.
+```ini
+[TextureOverrideHeight1024]
+match_height = 1024
+```
+
+#### match_msaa
+At TextureOverride.
+Filter by MSAA (Not used in anime game).
+```ini
+[TextureOverrideMsaa]
+match_msaa = 1
+```
+
+#### match_msaa_quality
+At TextureOverride.
+```ini
+[TextureOverrideMsaaQuality]
+match_msaa_quality = 1
+```
+
+#### match_usage
+At TextureOverride.
+This setting doesn't make much sense and defaults to DEFAULT.
+More details here:
+https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_usage
+```ini
+[TextureOverrideUsage]
+match_usage = IMMUTABLE
+```
+
+#### match_bind_flags
+At TextureOverride.
+Another filter.
+You can use + or - before the flag to change the filtering.
+If there is no + or - then the filter is simply not used.
+```ini
+[TextureOverrideAllBindFlags]
+match_bind_flags = +VERTEX_BUFFER -INDEX_BUFFER CONSTANT_BUFFER SHADER_RESOURCE STREAM_OUTPUT RENDER_TARGET DEPTH_STENCIL UNORDERED_ACCESS DECODER VIDEO_ENCODER
+```
+
+#### match_cpu_access_flags
+At TextureOverride.
+Another filter.
+You can use + or - before the flag to change the filtering.
+If there is no + or - then the filter is simply not used.
+```ini
+[TextureOverrideAllCPUAccessFlags]
+match_cpu_access_flags = +READ -WRITE
+```
+
+#### match_misc_flags
+At TextureOverride.
+Another filter.
+You can use + or - before the flag to change the filtering.
+If there is no + or - then the filter is simply not used.
+```ini
+[TextureOverrideAllMiscFlags]
+match_misc_flags = GENERATE_MIPS SHARED TEXTURECUBE DRAWINDIRECT_ARGS BUFFER_ALLOW_RAW_VIEWS BUFFER_STRUCTURED RESOURCE_CLAMP SHARED_KEYEDMUTEX GDI_COMPATIBLE SHARED_NTHANDLE RESTRICTED_CONTENT RESTRICT_SHARED_RESOURCE RESTRICT_SHARED_RESOURCE_DRIVER GUARDED TILE_POOL TILED
+```
+
+#### match_byte_width
+At TextureOverride.
+Match byte width.
+```ini
+[TextureOverrideByteWidth]
+match_byte_width = res_width * res_height
+```
+
+#### match_stride
+At TextureOverride.
+Something to do with buffers.
+```ini
+[TextureOverrideStride]
+match_stride = 40
+```
+
+#### match_mips
+At TextureOverride.
+```ini
+[TextureOverrideMips]
+match_mips = 1
+```
+
+#### match_format
+At TextureOverride.
+Filter by format. Useful for modifying something that doesn't have a constant hash.
+List of DX formats:
+https://learn.microsoft.com/en-us/windows/win32/api/dxgiformat/ne-dxgiformat-dxgi_format
+```ini
+[TextureOverrideFormat]
+match_format = R32G32B32A32_FLOAT
+```
+
+#### match_depth
+At TextureOverride.
+```ini
+[TextureOverrideDepth]
+match_depth = 1
+```
+
+#### match_array
+At TextureOverride.
+```ini
+[TextureOverrideArray]
+match_array = 12
+```
+
 ---
 
 ## Resource
@@ -384,6 +556,191 @@ warp = false
 type = cycle
 $swapvar = 0, 1, 2, 3
 ```
+
+## CustomShader (section)
+Running your own shader.
+```ini
+[CustomShaderWOW]
+handling = skip
+drawindexed = auto
+```
+
+#### topology
+https://learn.microsoft.com/en-us/windows/win32/direct3d11/d3d11-primitive-topology  
+Change object rendering type.  
+Values:  
+point_list  
+line_list  
+line_strip  
+triangle_list  
+triangle_strip  
+line_list_adj  
+line_strip_adj  
+triangle_list_adj  
+triangle_strip_adj  
+1_control_point_patch_list  
+2_control_point_patch_list  
+3_control_point_patch_list  
+4_control_point_patch_list  
+5_control_point_patch_list  
+6_control_point_patch_list  
+7_control_point_patch_list  
+8_control_point_patch_list  
+9_control_point_patch_list  
+10_control_point_patch_list  
+11_control_point_patch_list  
+12_control_point_patch_list  
+13_control_point_patch_list  
+14_control_point_patch_list  
+15_control_point_patch_list  
+16_control_point_patch_list  
+17_control_point_patch_list  
+18_control_point_patch_list  
+19_control_point_patch_list  
+20_control_point_patch_list  
+21_control_point_patch_list  
+22_control_point_patch_list  
+23_control_point_patch_list  
+24_control_point_patch_list  
+25_control_point_patch_list  
+26_control_point_patch_list  
+27_control_point_patch_list  
+28_control_point_patch_list  
+29_control_point_patch_list  
+30_control_point_patch_list  
+31_control_point_patch_list  
+32_control_point_patch_list  
+```ini
+[CustomShaderTopology]
+topology = point_list
+handling = skip
+drawindexed = auto
+```
+
+#### cull
+https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_cull_mode  
+Indicates triangles facing a particular direction are not drawn.  
+Values:  
+none  
+front  
+back  
+```ini
+[CustomShaderCull]
+cull = none
+handling = skip
+drawindexed = auto
+```
+
+#### fill
+https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_fill_mode  
+Determines the fill mode to use when rendering triangles.
+Values:  
+wireframe    
+solid    
+```ini
+[CustomShaderFill]
+fill = solid
+handling = skip
+drawindexed = auto
+```
+
+#### blend
+https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_blend  
+Blend factors, which modulate values for the pixel shader and render target.  
+2 applications  
+1. blend = disable  
+2. blend = BlendOp SrcBlend DestBlend
+Where SrcBlend and DestBlend can have values:  
+zero  
+one  
+src_color  
+inv_src_color  
+src_alpha  
+inv_src_alpha  
+dest_alpha  
+inv_dest_alpha  
+dest_color  
+inv_dest_color  
+src_alpha_sat  
+blend_factor  
+inv_blend_factor  
+src1_color  
+inv_src1_color  
+src1_alpha  
+inv_src1_alpha  
+
+BlendOp Values:  
+add  
+subtract  
+rev_subtract  
+min  
+max  
+
+also blend is blend[0]-blend[7]
+
+```ini
+[CustomShaderBlend]
+blend[0] = add src_alpha inv_src_alpha
+handling = skip
+drawindexed = auto
+```
+
+#### alpha 
+alpha = BlendOpAlpha SrcBlendAlpha DestBlendAlpha
+
+Where SrcBlendAlpha and DestBlendAlpha can have values:  
+zero  
+one  
+src_color  
+inv_src_color  
+src_alpha  
+inv_src_alpha  
+dest_alpha  
+inv_dest_alpha  
+dest_color  
+inv_dest_color  
+src_alpha_sat  
+blend_factor  
+inv_blend_factor  
+src1_color  
+inv_src1_color  
+src1_alpha  
+inv_src1_alpha  
+
+BlendOpAlpha Values:  
+add  
+subtract  
+rev_subtract  
+min  
+max  
+
+also alpha is alpha[0]-alpha[7]
+
+```ini
+[CustomShaderAlpha]
+alpha[0] = add src_alpha inv_src_alpha
+handling = skip
+drawindexed = auto
+```
+
+#### max_executions_per_frame
+max_executions_per_frame to limit this to the first time the reflection  
+```ini
+[CustomShaderMEPF]
+max_executions_per_frame = 1
+handling = skip
+drawindexed = auto
+```
+
+#### alpha_to_coverage
+Alpha-to-coverage is a multisampling technique that is most useful for situations such as dense foliage where there are several overlapping polygons that use alpha transparency to define edges within the surface.
+```ini
+[CustomShaderATC]
+alpha_to_coverage = 0
+handling = skip
+drawindexed = auto
+```
+
 
 ---
 
