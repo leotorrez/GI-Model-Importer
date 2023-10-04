@@ -437,7 +437,27 @@ Not sure if it is one of the reserved words in GIMI, but since sections with res
 #### type (Resourse)
 
 This is a properties under [Resource](#resource), not under [Key](#key-section).
-It declares the type of the resource, which is generally used for buffer types.
+Used to indicate the type of resource
+There are 15 types in 3DMigoto (But in reality there are 7)
+7 main ones:
+Buffer
+StructuredBuffer
+ByteAddressBuffer
+Texture1D
+Texture2D
+Texture3D
+TextureCube
+
+rest:
+AppendStructuredBuffer
+ConsumeStructuredBuffer
+RWBuffer
+RWStructuredBuffer
+RWByteAddressBuffer
+RWTexture1D
+RWTexture2D
+RWTexture3D
+
 ```ini
 [ResourceLuminePantsuPosition]
 type = Buffer
@@ -453,7 +473,9 @@ filename = .\LumineParts\LumineBodyDiffuse.dds
 
 #### format
 
-Used for IB (Index Buffer) resources, specifies the size of a single index value.
+Used to specify a specific resource format
+List of formats:
+https://learn.microsoft.com/en-gb/windows/win32/api/dxgiformat/ne-dxgiformat-dxgi_format
 ```ini
 [ResourceLumineBodyIB]
 format = DXGI_FORMAT_R32_UINT
