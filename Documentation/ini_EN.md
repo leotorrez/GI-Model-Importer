@@ -467,12 +467,23 @@ stride = 20
 ```
 
 #### data
-Used for ?? resources, it is a string.
+Used for Buffer resources.
 ```ini
-[ResourceLuminePantsu]
-data = "Jsut a string."
+[ResourceFloat]
+type = Buffer
+format = R32_FLOAT
+data = 1 2 3 4
 ```
 
+data can convert the first 128 ASCII characters into a buffer (R8_UINT format only)
+```ini
+[ResourceString]
+type = Buffer
+format = R8_UINT
+data = "Jsut a string."
+```
+You will get a buffer with these values:
+74 115 117 116 32 97 32 115 116 114 105 110 103 46
 ---
 
 ## CommandList
