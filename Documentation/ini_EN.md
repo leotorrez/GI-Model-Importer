@@ -436,28 +436,28 @@ Not sure if it is one of the reserved words in GIMI, but since sections with res
 
 #### type (Resourse)
 
-This is a properties under [Resource](#resource), not under [Key](#key-section).
-Used to indicate the type of resource
-There are 15 types in 3DMigoto (But in reality there are 7)
-7 main ones:
-Buffer
-StructuredBuffer
-ByteAddressBuffer
-Texture1D
-Texture2D
-Texture3D
-TextureCube
-
-rest:
-AppendStructuredBuffer
-ConsumeStructuredBuffer
-RWBuffer
-RWStructuredBuffer
-RWByteAddressBuffer
-RWTexture1D
-RWTexture2D
-RWTexture3D
-
+This is a properties under [Resource](#resource), not under [Key](#key-section).  
+Used to indicate the type of resource  
+There are 15 types in 3DMigoto (But in reality there are 7)  
+7 main ones:  
+Buffer  
+StructuredBuffer  
+ByteAddressBuffer  
+Texture1D  
+Texture2D  
+Texture3D  
+TextureCube  
+  
+rest:  
+AppendStructuredBuffer  
+ConsumeStructuredBuffer  
+RWBuffer  
+RWStructuredBuffer  
+RWByteAddressBuffer  
+RWTexture1D  
+RWTexture2D  
+RWTexture3D  
+  
 ```ini
 [ResourceLuminePantsuPosition]
 type = Buffer
@@ -473,9 +473,9 @@ filename = .\LumineParts\LumineBodyDiffuse.dds
 
 #### format
 
-Used to specify a specific resource format
-List of formats:
-https://learn.microsoft.com/en-gb/windows/win32/api/dxgiformat/ne-dxgiformat-dxgi_format
+Used to specify a specific resource format  
+List of formats:  
+https://learn.microsoft.com/en-gb/windows/win32/api/dxgiformat/ne-dxgiformat-dxgi_format  
 ```ini
 [ResourceLumineBodyIB]
 format = DXGI_FORMAT_R32_UINT
@@ -489,7 +489,7 @@ stride = 20
 ```
 
 #### data
-Used for Buffer resources.
+Used for Buffer resources.  
 ```ini
 [ResourceFloat]
 type = Buffer
@@ -497,15 +497,15 @@ format = R32_FLOAT
 data = 1 2 3 4
 ```
 
-data can convert the first 128 ASCII characters into a buffer (R8_UINT format only)
+data can convert the first 128 ASCII characters into a buffer (R8_UINT format only)  
 ```ini
 [ResourceString]
 type = Buffer
 format = R8_UINT
 data = "Jsut a string."
 ```
-You will get a buffer with these values:
-74 115 117 116 32 97 32 115 116 114 105 110 103 46
+You will get a buffer with these values:  
+74 115 117 116 32 97 32 115 116 114 105 110 103 46  
 ---
 
 ## CommandList
