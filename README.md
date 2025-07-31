@@ -3,6 +3,8 @@ EN | [中文](CN_README.md)
 # Genshin-Impact-Model-Importer (GIMI)
 Tools and instructions for importing custom models into Genshin Impact.
 
+#### STANDALONE GIMI IS DEPRECATED! Please use [XXMI loader](https://github.com/SpectrumQT/XXMI-Launcher) instead, which will automatically load the required files and libraries. The guides and scripts on this github are outdated, but still contain useful information
+
 #### DISCLAIMER: I strongly recommend only using private servers for modding. Using these tools on official Genshin servers carries a high risk of being banned. I do not condone the use of these tools and programs on official servers, and take no responsibility for any consequences as a result if you do. 
 
 GIMI is a version of 3DMigoto that I have modified to be compatible with Genshin.
